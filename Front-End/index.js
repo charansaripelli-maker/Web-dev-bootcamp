@@ -2,12 +2,12 @@ let users=[
     {
         name:"John Doe",
         gender:"Male",
-        image:"john.png",
+        image:"eh.jfif",
     },
      {
         name:"Jane Doe",
         gender:"Female",
-        image:"jane.png",
+        image:"girl.jfif",
     }
 ]
 let curr=0;
