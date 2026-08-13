@@ -1,1 +1,1 @@
-alert("Welcome to Web Boot Camp")
+// alert("Welcome to Web Boot Camp")
