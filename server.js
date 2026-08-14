@@ -4,6 +4,7 @@ const path = require("path");
 const app = express();
 
 app.use(express.static(path.join(__dirname, "Front-End")));
+app.use(express.json());
 
 const PORT = process.env.PORT || 8080;
 const users = [
@@ -76,6 +77,7 @@ function findIndexById(id) {
     }
     return -1;  
 }
+let id=10;
 app.get("/api/users", (req, res) => {
     res.json(users);
 });
@@ -95,6 +97,21 @@ app.get("/api/random-user", (req, res) => {
     
     res.json(users[randomIndex]);
 });
+app.post("/api/users", (req, res) => {
+    const newUser=req.body;
+    let user={
+        id: ++id,
+        name: newUser.name,
+        gender: newUser.gender,
+        image: newUser.image
+    }
+    users.push(user);
+    res.status(201).json({"message": "User added successfully", "user": user});
+});
+
+
+
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
