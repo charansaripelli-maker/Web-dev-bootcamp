@@ -36,3 +36,22 @@ fetch("https://randomuser.me/api/")
     console.log("Error fetching random user:", error);
 })
 }
+function myrandomuser(){
+
+fetch("/api/random-user")
+.then((response)=>response.json())
+.then((data)=>{
+    let username=document.getElementById("user-name");
+    let usergender=document.getElementById("user-gender");
+    let userimage=document.getElementById("user-image");
+    username.innerHTML=data.name;
+    usergender.innerHTML=data.gender;
+    userimage.src=data.image;
+})
+.catch((error)=>{
+    console.log("Error fetching random user:", error);
+})
+
+
+
+}

@@ -95,7 +95,7 @@ app.get("/api/random-user", (req, res) => {
     }
     const randomIndex = Math.floor(Math.random() * users.length);
     
-    res.json(users[randomIndex]);
+    return res.json(users[randomIndex]);
 });
 app.post("/api/users", (req, res) => {
     const newUser=req.body;
@@ -106,11 +106,18 @@ app.post("/api/users", (req, res) => {
         image: newUser.image
     }
     users.push(user);
-    res.status(201).json({"message": "User added successfully", "user": user});
+    return res.status(201).json({"message": "User added successfully", "user": user});
 });
 
-
-
+app.put("/api/users/:id", (req, res) => {
+    const index=findIndexById(Number((req.params.id)));
+    if (index === -1) {
+        return res.status(404).json({ error: "User not found" });
+    }
+    const updatedUser = { ...users[index], ...req.body };
+    users[index] = updatedUser;
+    return res.json({"message": "User updated successfully", "user": updatedUser});
+});
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
