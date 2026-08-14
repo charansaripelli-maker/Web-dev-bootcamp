@@ -22,7 +22,7 @@ function toggleuser(){
     userimage.src=users[curr].image;
 }
 function randomuser(){
-fetch("https://randomuser.me/api/") 
+fetch("https://randomuser.me/api/")
 .then((response)=>response.json())
 .then((data)=>{
     let username=document.getElementById("user-name");
